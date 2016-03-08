@@ -1,4 +1,4 @@
-from .. import reader
+from .. import documents
 from flask import Blueprint
 from flask import abort
 from flask import render_template
@@ -16,6 +16,8 @@ def notify():
     # Return forbidden if not verified
 
     # Shell out to git
+
+    """
     id = 'c15acbcafcd9947ca21d5204fed8ab36bd2ed9cc'
     dir = 'content'
 
@@ -28,20 +30,20 @@ def notify():
         for file in files
         reader.build()
 
-
+    """
     # Return 204 if successful
     return '', 204
 
 
 @blueprint.route('update/<item>')
 def update():
-
+    pass
 
 
 @blueprint.route('/rebuild')
 def rebuild():
-    reader.clean()
-    reader.build_all()
+    documents.remove()
+    documents.update()
     return '', 204
 
 
