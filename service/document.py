@@ -1,28 +1,13 @@
-import hashlib
 import os
 import re
-
 import dateutil.parser
 import textwrap
-
 from datetime import datetime
 from flask.ext.misaka import markdown
 from glob2 import glob
 from logging import error
 from logging import info
-from logging import warning
 from titlecase import titlecase
-from urllib.parse import quote_plus
-
-"""
-reader api:
-metadata: { title*, date, keywords, description, template, path, prev, next }   (*required)
-build(source, target) -> (document, metadata) parses a given item
-
-documents api:
-update(path)   creates, updates, or deletes document(s) at path appropriately
-remove(path)   deletes document(s) at path
-"""
 
 
 class Documents():
@@ -34,6 +19,8 @@ class Documents():
     def __init__(self, source, target):
         self.source = source
         self.target = target
+        self.remove()
+        self.update()
 
     def _parse_metadata(self, lines):
         meta = {}
@@ -56,20 +43,19 @@ class Documents():
         def clean(key, action, default):
             meta[key] = action(meta[key]) if check(key) else default()
 
-        def raise_exp():
-            raise KeyError
+        def required():
+            raise KeyError("Missing required value.")
 
         try:
-            clean('title', titlecase, raise_exp)
+            clean('title', titlecase, required)
             clean('author', titlecase, lambda: None)
-            clean('date', dateutil.parser.parse, raise_exp)
+            clean('date', dateutil.parser.parse, required)
             clean('keywords', lambda x: x.lower().split(), lambda: [])
             clean('template', lambda x: x, lambda: 'default')
-            clean('prev', quote_plus, lambda: None)
-            clean('next', quote_plus, lambda: None)
+            clean('prev', lambda x: x, lambda: None)
+            clean('next', lambda x: x, lambda: None)
         except(KeyError, ValueError, OverflowError) as e:
-            warning("Unable to parse metadata: {}".format(e))
-            return {}
+            raise ValueError("Unable to parse meta information: {}".format(e))
 
         return meta
 
@@ -80,72 +66,46 @@ class Documents():
             {content}{{% endblock %}}
             ''').format(content=html, template=metadata['template'])
 
-    def _build(self, root, file):
+    def _build(self, path):
         # TODO: Allow other file types
-        if not file.endswith('.md'):
-            raise ValueError
+        if not path.endswith('.md'):
+            raise ValueError('Skipping non-markdown file.')
 
-        try:
-            with open(os.path.join(root, file)) as f:
-                meta, content = self._parse_metadata(f.readlines())
-        except OSError as e:
-            error(e)
-            raise ValueError
+        with open(path) as f:
+            meta, content = self._parse_metadata(f.readlines())
 
-        if not meta:
-            raise ValueError
-
-        if (meta['date'] - datetime.now()).days >= 0:
-            info("Skipping {} until {}".format(file, meta['date']))
-            raise ValueError
+        if datetime.now() < meta['date']:
+            raise ValueError("Skipping until published")
 
         # TODO: Pass config[markdown] to the markdown parser
         return (meta, self._embed_templating(markdown(content), meta))
 
-    def _normal_glob(self, path):
-        path += '*/**' if os.path.isdir(path) else '**'
-        return glob(path)
+    # TODO: Restrict to not go up directories
+    def _trie_glob(self, path):
+        glob_path = os.path.join(os.path.split(path)[0], '**')
+        return [e for e in glob(glob_path) if e.startswith(path)]
 
-    # TODO: Remove content/ prefix from names
     def update(self, path=''):
-        self.remove(path)
-        source_path = os.path.join(self.source, path)
-
-        for file in self._normal_glob(source_path):
-            print(file)
+        for item in self._trie_glob(os.path.join(self.source, path)):
             try:
-                meta, html = self._build(*os.path.split(file))
-            except ValueError:
-                continue
-
-            target_path = os.path.join(self.target, os.path.splitext(file)[0])
-            os.makedirs(os.path.split(target_path)[0], exist_ok=True)
-
-            try:
-                print(target_path)
-                with open(target_path + '.jinja', 'w') as f:
-                    f.write(html)
-                    self.meta[file] = meta
-                    info("Written {} to cache".format(target_path))
+                rel = os.path.splitext(os.path.relpath(item, self.source))[0]
+                target = os.path.join(self.target, rel)
+                if os.path.isdir(item):
+                    os.makedirs(target, exist_ok=True)
+                else:
+                    meta, html = self._build(item)
+                    with open(target + '.jinja', 'w+') as f:
+                        f.write(html)
+                        self.meta[rel] = meta
+            except ValueError as e:
+                info("{}: {}".format(rel, e))
             except OSError as e:
-                error(e)
+                error("{}: {}".format(rel, e))
 
     def remove(self, path=''):
-        target_path = os.path.join(self.target, path)
-        glob_paths = self._normal_glob(target_path)
-
-        for item in glob_paths:
-            if os.path.isfile(item):
-                try:
-                    os.remove(item)
-                except OSError as e:
-                    error(e)
-
-        for item in glob_paths:
-            if os.path.isdir(item):
-                try:
-                    os.rmdir(item)
-                except OSError as e:
-                    error(e)
-
-        self.meta = {}
+        for item in reversed(self._trie_glob(os.path.join(self.target, path))):
+            try:
+                os.remove(item) if os.path.isfile(item) else os.rmdir(item)
+            except OSError as e:
+                error("{}: {}".format(item, e))
+            self.meta.pop(os.path.splitext(os.path.relpath(item, self.target))[0], None)
