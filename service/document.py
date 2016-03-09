@@ -80,7 +80,7 @@ class Documents():
         # TODO: Pass config[markdown] to the markdown parser
         return (meta, self._embed_templating(markdown(content), meta))
 
-    # TODO: Restrict to not go up directories
+    # TODO: Add documentation that mentions restricting '..' at api level
     def _trie_glob(self, path):
         glob_path = os.path.join(os.path.split(path)[0], '**')
         return [e for e in glob(glob_path) if e.startswith(path)]
