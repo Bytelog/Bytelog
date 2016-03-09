@@ -1,4 +1,4 @@
-function() {
+function x() {
 
     console.log("minified")
 }

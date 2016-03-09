@@ -4,7 +4,6 @@ from flask import Flask
 from flask import render_template
 from flask.ext.misaka import Misaka
 
-
 md = Misaka()
 documents = Documents('content', 'assets/templates/cache')
 
@@ -27,6 +26,7 @@ def create_app():
     # TODO: Move to environment config
     app.jinja_env.lstrip_blocks = True
     app.jinja_env.trim_blocks = True
+    app.config['MINIFY_PAGE'] = True
     app.debug = True
 
     return app
