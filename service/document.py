@@ -49,7 +49,7 @@ class Documents():
         try:
             clean('title', titlecase, required)
             clean('author', titlecase, lambda: None)
-            clean('date', dateutil.parser.parse, required)
+            clean('date', dateutil.parser.parse, lambda: None)
             clean('keywords', lambda x: x.lower().split(), lambda: [])
             clean('template', lambda x: x, lambda: 'default')
             clean('prev', lambda x: x, lambda: None)
@@ -74,7 +74,7 @@ class Documents():
         with open(path) as f:
             meta, content = self._parse_metadata(f.readlines())
 
-        if datetime.now() < meta['date']:
+        if meta['date'] and datetime.now() < meta['date']:
             raise ValueError("Skipping until published")
 
         # TODO: Pass config[markdown] to the markdown parser

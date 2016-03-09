@@ -20,9 +20,9 @@ def default(page):
     template = 'cache/' + file
 
     try:
-        meta = reader.meta[file]
+        meta = documents.meta[page]
     except IndexError:
         meta = {}
 
-    data = OrderedDict(sorted(reader.meta.items(), key=lambda x: x[1]['date']))
+    data = {}
     return render_template(template, meta=meta, data=data)
