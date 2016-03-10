@@ -108,4 +108,5 @@ class Documents():
                 os.remove(item) if os.path.isfile(item) else os.rmdir(item)
             except OSError as e:
                 error("{}: {}".format(item, e))
-            self.meta.pop(os.path.splitext(os.path.relpath(item, self.target))[0], None)
+            key = os.path.splitext(os.path.relpath(item, self.target))[0]
+            self.meta.pop(key, None)
