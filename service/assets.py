@@ -1,31 +1,64 @@
-from flask_assets import Bundle
-from flask_assets import Environment
+import os
+import zopfli
+
 from csscompressor import compress
+from slimit import minify
+from glob2 import iglob
 
-def cssmin(_in, out, **kw):
-    out.write(compress(_in.read()))
 
-def init_app(app):
-    assets = Environment(app)
+# clear output directory
+# get generator for directory
+# compress file and compare with original
+# save smaller version to output directory
 
-    styles = Bundle(
-        '*.css',
-        filters=cssmin,
-        output='main.css',
-    )
 
-    scripts = Bundle(
-        '*.js',
-        filters='slimit',
-        output='main.js'
-    )
+for source in iglob('assets/images/**.png'):
+    with open(source, 'rb') as f:
+        data = f.read()
 
-    assets.register('styles', styles)
-    assets.register('scripts', scripts)
+    png = zopfli.ZopfliPNG()
+    target = png.optimize(data)
+    if len(data) < len(target):
+        target = data
 
-    # TODO: Disable auto building
-    # TODO: Move this config to an environment file
-    assets.load_path = ['assets/scripts', 'assets/styles']
-    assets.config['SASS_STYLE'] = 'compressed'
-    assets.url_expire = False
-    assets.auto_build = True
+    with open(os.path.join('public', source), 'wb') as f:
+        f.write(target)
+
+    with open(os.path.join('public', source + '.gz'), 'wb') as f:
+        deflate = zopfli.ZopfliCompressor(zopfli.ZOPFLI_FORMAT_GZIP)
+        z = deflate.compress(target) + deflate.flush()
+        f.write(z)
+
+
+for source in iglob('assets/styles/**.css'):
+    with open(source, 'r') as f:
+        data = f.read()
+
+    target = compress(data)
+    if len(data) < len(target):
+        target = data
+
+    with open(os.path.join('public', source), 'w') as f:
+        f.write(target)
+
+    with open(os.path.join('public', source + '.gz'), 'wb') as f:
+        deflate = zopfli.ZopfliCompressor(zopfli.ZOPFLI_FORMAT_GZIP)
+        z = deflate.compress(target.encode()) + deflate.flush()
+        f.write(z)
+
+
+for source in iglob('assets/scripts/**.js'):
+    with open(source, 'r') as f:
+        data = f.read()
+
+    target = minify(data)
+    if len(data) < len(target):
+        target = data
+
+    with open(os.path.join('public', source), 'w') as f:
+        f.write(target)
+
+    with open(os.path.join('public', source + '.gz'), 'wb') as f:
+        deflate = zopfli.ZopfliCompressor(zopfli.ZOPFLI_FORMAT_GZIP)
+        z = deflate.compress(target.encode()) + deflate.flush()
+        f.write(z)

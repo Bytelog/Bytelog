@@ -4,7 +4,7 @@ import dateutil.parser
 import textwrap
 from datetime import datetime
 from flask.ext.misaka import markdown
-from glob2 import glob
+from glob2 import iglob
 from logging import error
 from logging import info
 from titlecase import titlecase
@@ -83,7 +83,7 @@ class Documents():
     # TODO: Add documentation that mentions restricting '..' at api level
     def _trie_glob(self, path):
         glob_path = os.path.join(os.path.split(path)[0], '**')
-        return [e for e in glob(glob_path) if e.startswith(path)]
+        return [e for e in iglob(glob_path) if e.startswith(path)]
 
     def update(self, path=''):
         for item in self._trie_glob(os.path.join(self.source, path)):
@@ -94,7 +94,7 @@ class Documents():
                     os.makedirs(target, exist_ok=True)
                 else:
                     meta, html = self._build(item)
-                    with open(target + '.jinja', 'w+') as f:
+                    with open(target + '.jinja', 'w') as f:
                         f.write(html)
                         self.meta[rel] = meta
             except ValueError as e:
