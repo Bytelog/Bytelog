@@ -47,6 +47,7 @@ Git hook -> Git Pull -> Parse Markdown -> Output file.jinja
 * Raw JavaScript
 * Scss +Bourbon
 * Absolutely no inline styles, stylistic classes, or inline scripts
+* Consider spritemapping for common images
 
 ## URL Schema
 Rule: Url's with a trailing slash MUST be redirected with the slash removed.  
