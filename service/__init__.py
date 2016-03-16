@@ -20,9 +20,6 @@ def create_app():
     register_errorhandlers(app)
     register_extensions(app)
 
-    # TODO: Remove after flask-assets > 0.11
-    #app.jinja_env.assets_environment.environment = app.jinja_env.assets_environment
-
     # TODO: Move to environment config
     app.jinja_env.lstrip_blocks = True
     app.jinja_env.trim_blocks = True
