@@ -5,7 +5,7 @@ from flask import render_template
 from flask.ext.misaka import Misaka
 
 md = Misaka()
-documents = Documents('content', 'assets/templates/cache')
+documents = Documents('content', 'templates/cache')
 
 
 def create_app():
@@ -13,7 +13,7 @@ def create_app():
         __name__.split('.')[0],
         static_url_path='/static',
         static_folder='../public',
-        template_folder='../assets/templates'
+        template_folder='../templates'
     )
 
     register_controllers(app)
