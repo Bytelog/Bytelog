@@ -16,6 +16,7 @@ http://yes-www.org - outer border
 https://www.michaelfogleman.com  
 http://www.2uo.de/ - Cool red colors  
 http://idlewords.com/talks/website_obesity.htm#crisis - Code to text ratio
+https://anadea.info/blog/how-to-choose-a-programming-language - Font
 
 ## Article Ideas
 - Regular Expressions

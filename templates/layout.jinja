@@ -5,9 +5,7 @@
         <meta name='viewport' content='width=device-width, initial-scale=1'>
         <link rel='author' href='http://domain/humans.txt'>
         <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Cantarell:400,400italic,700italic,700'>
-        {% assets 'styles' %}
-        <link rel='stylesheet' href='{{ ASSET_URL }}'>
-        {% endassets %}
+        <link rel='stylesheet' href='styles/main.css'>
     </head>
     <body>
     
@@ -36,8 +34,6 @@
             <a href='#'>Source</a>
         </footer>
 
-        {% assets 'scripts' %}
-        <script src='{{ ASSET_URL }}'></script>
-        {% endassets %}
+        <script src='scripts/main.js'></script>
     </body>
 </html>

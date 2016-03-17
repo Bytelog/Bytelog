@@ -11,7 +11,7 @@ documents = Documents('content', 'templates/cache')
 def create_app():
     app = Flask(
         __name__.split('.')[0],
-        static_url_path='/static',
+        static_url_path='',
         static_folder='../public',
         template_folder='../templates'
     )

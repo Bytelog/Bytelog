@@ -23,11 +23,9 @@ class AssetManager:
         self.source = source
         self.target = target
 
-    def register(self, pattern, filters, actions):
-
-        # TODO: Verify that pattern is a valid re.compile()
+    def register(self, regex, filters, actions):
         self.handlers.append({
-            'pattern': pattern,
+            'regex': regex,
             'filters': filters,
             'actions': actions
         })
@@ -36,8 +34,7 @@ class AssetManager:
         for source in iglob(os.path.join(self.source, '**')):
             path = os.path.relpath(source, self.source)
             try:
-                item = next(handler for handler in self.handlers
-                            if handler['pattern'].match(path))
+                item = next(x for x in self.handlers if x['regex'].match(path))
                 _in = open(source, 'rb')
             except(OSError, StopIteration):
                 continue
