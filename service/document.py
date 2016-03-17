@@ -90,10 +90,9 @@ class Documents():
             try:
                 rel = os.path.splitext(os.path.relpath(item, self.source))[0]
                 target = os.path.join(self.target, rel)
-                if os.path.isdir(item):
-                    os.makedirs(target, exist_ok=True)
-                else:
+                if os.path.isfile(item):
                     meta, html = self._build(item)
+                    os.makedirs(os.path.split(target)[0], exist_ok=True)
                     with open(target + '.jinja', 'w') as f:
                         f.write(html)
                         self.meta[rel] = meta
