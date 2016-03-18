@@ -30,11 +30,11 @@ class CodeFormatter(HtmlFormatter):
 class HighlightRenderer(HtmlRenderer):
     def blockcode(self, text, lang):
         if not lang:
-            return '{% raw %}<pre><code>{}</code></pre>{% endraw %}'.format(html.escape(text, quote=True))
+            return '{{% raw %}}<pre><code>{}</code></pre>{{% endraw %}}'.format(html.escape(text, quote=True))
         lexer = get_lexer_by_name(lang, stripall=True)
         formatter = CodeFormatter(linenos='table')
 
-        return highlight(text, lexer, formatter)
+        return '{{% raw %}}{}{{% endraw %}}'.format(highlight(text, lexer, formatter))
 
 rd = HighlightRenderer()
 markdown = Markdown(rd, extensions=('tables', 'fenced-code', 'footnotes',
