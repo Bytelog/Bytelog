@@ -15,12 +15,24 @@ from pygments.formatters import HtmlFormatter
 from pygments.lexers import get_lexer_by_name
 
 
+class CodeFormatter(HtmlFormatter):
+
+    def wrap(self, source, outfile):
+        return self._wrap_code(source)
+
+    def _wrap_code(self, source):
+        yield 0, '<code><pre>'
+        for i, t in source:
+            yield i, t
+        yield 0, '</pre></code>'
+
+
 class HighlightRenderer(HtmlRenderer):
     def blockcode(self, text, lang):
         if not lang:
             return '<pre><code>{}</code></pre>'.format(html.escape(text))
         lexer = get_lexer_by_name(lang, stripall=True)
-        formatter = HtmlFormatter()
+        formatter = CodeFormatter(linenos='table')
 
         return highlight(text, lexer, formatter)
 
