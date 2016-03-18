@@ -2,11 +2,10 @@ from .assets import AssetManager
 from .document import Documents
 from flask import Flask
 from flask import render_template
-from flask.ext.misaka import Misaka
 
-md = Misaka()
 am = AssetManager('assets', 'public')
 documents = Documents('content', 'templates/cache')
+
 
 def create_app():
     app = Flask(
@@ -49,5 +48,4 @@ def register_errorhandlers(app):
 
 
 def register_extensions(app):
-    md.init_app(app)
     am.init_app(app)

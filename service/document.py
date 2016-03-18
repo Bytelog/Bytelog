@@ -2,12 +2,37 @@ import os
 import re
 import dateutil.parser
 import textwrap
+import html
+from misaka import Markdown, HtmlRenderer
 from datetime import datetime
-from flask.ext.misaka import markdown
 from glob2 import iglob
 from logging import error
 from logging import info
 from titlecase import titlecase
+
+from pygments import highlight
+from pygments.formatters import HtmlFormatter
+from pygments.lexers import get_lexer_by_name
+
+
+class HighlightRenderer(HtmlRenderer):
+    def blockcode(self, text, lang):
+        if not lang:
+            return '<pre><code>{}</code></pre>'.format(html.escape(text))
+        lexer = get_lexer_by_name(lang, stripall=True)
+        formatter = HtmlFormatter()
+
+        return highlight(text, lexer, formatter)
+
+renderer = HighlightRenderer()
+markdown = Markdown(renderer, extensions=('fenced-code'))
+
+
+
+"""md = Misaka(fenced_code=True, lax_html_blocks=True, no_intra_emphasis=True,
+            space_headers=True, strikethrough=True, superscript=True,
+            tables=True, smartypants=True)
+"""
 
 
 class Documents():
