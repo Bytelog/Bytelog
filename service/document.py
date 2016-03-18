@@ -3,7 +3,7 @@ import re
 import dateutil.parser
 import textwrap
 import html
-from misaka import Markdown, HtmlRenderer
+from misaka import Markdown, HtmlRenderer, smartypants
 from datetime import datetime
 from glob2 import iglob
 from logging import error
@@ -24,15 +24,12 @@ class HighlightRenderer(HtmlRenderer):
 
         return highlight(text, lexer, formatter)
 
-renderer = HighlightRenderer()
-markdown = Markdown(renderer, extensions=('fenced-code'))
-
-
-
-"""md = Misaka(fenced_code=True, lax_html_blocks=True, no_intra_emphasis=True,
-            space_headers=True, strikethrough=True, superscript=True,
-            tables=True, smartypants=True)
-"""
+rd = HighlightRenderer()
+markdown = Markdown(rd, extensions=('tables', 'fenced-code', 'footnotes',
+                                    'strikethrough', 'underline', 'highlight',
+                                    'quote', 'superscript', 'math',
+                                    'no-intra-emphasis', 'space-headers',
+                                    'math-explicit'))
 
 
 class Documents():
