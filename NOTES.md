@@ -6,7 +6,6 @@ Corey Matyas, Dylan Allbee, Vijay Atwater-Van Ness
 
 ## Links
 http://kecebongsoft.com  
-http://splendidabacus.com/martin-pelican/my-super-post.html  
 http://steveasleep.com  
 https://zerokspot.com/weblog/2015/12/31/new-string-formatting-in-python/ - fonts?  
 https://seanmckaybeck.com/scrapy-the-basics.html  
