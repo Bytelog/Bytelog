@@ -1,4 +1,8 @@
+import os
+
 from .assets import AssetManager
+from .config import Development
+from .config import Production
 from .document import Documents
 from flask import Flask
 from flask import render_template
@@ -8,22 +12,22 @@ documents = Documents('content', 'templates/cache')
 
 
 def create_app():
-    app = Flask(
-        __name__.split('.')[0],
-        static_url_path='',
-        static_folder='../public',
-        template_folder='../templates'
-    )
+    app = Flask(__name__.split('.')[0], static_url_path='/public')
+
+    env = Development
+    if os.environ.get('APPLICATION_ENV', '') == 'Production':
+        env = Production
+
+    app.config.from_object(env)
+
+    # Load config items into jinja settings
+    for key, val in app.config.items():
+        if key.startswith('JINJA'):
+            setattr(app.jinja_env, key[6:].lower(), val)
 
     register_controllers(app)
     register_errorhandlers(app)
     register_extensions(app)
-
-    # TODO: Move to environment config
-    app.jinja_env.lstrip_blocks = True
-    app.jinja_env.trim_blocks = True
-    app.config['MINIFY_PAGE'] = True
-    app.debug = True
 
     return app
 

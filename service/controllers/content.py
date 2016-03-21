@@ -28,8 +28,10 @@ def response_minify(response):
 
 
 @blueprint.route('/', defaults={'page': 'index'})
-@blueprint.route('/<page>')
+@blueprint.route('/<path:page>')
 def default(page):
+    from pprint import pprint
+    pprint(documents.meta)
     file = page + '.jinja'
     template = 'cache/' + file
 

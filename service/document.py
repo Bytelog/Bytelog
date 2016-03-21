@@ -3,7 +3,7 @@ import re
 import dateutil.parser
 import textwrap
 import html
-from misaka import Markdown, HtmlRenderer, smartypants
+from misaka import Markdown, HtmlRenderer
 from datetime import datetime
 from glob2 import iglob
 from logging import error
@@ -15,6 +15,7 @@ from pygments.formatters import HtmlFormatter
 from pygments.lexers import get_lexer_by_name
 
 
+# TODO: This section could use improvement
 class CodeFormatter(HtmlFormatter):
 
     def wrap(self, source, outfile):
@@ -30,11 +31,13 @@ class CodeFormatter(HtmlFormatter):
 class HighlightRenderer(HtmlRenderer):
     def blockcode(self, text, lang):
         if not lang:
-            return '{{% raw %}}<pre><code>{}</code></pre>{{% endraw %}}'.format(html.escape(text, quote=True))
+            format = '{{% raw %}}<pre><code>{}</code></pre>{{% endraw %}}'
+            return format.format(html.escape(text, quote=True))
         lexer = get_lexer_by_name(lang, stripall=True)
         formatter = CodeFormatter(linenos='table')
 
-        return '{{% raw %}}{}{{% endraw %}}'.format(highlight(text, lexer, formatter))
+        format = '{{% raw %}}{}{{% endraw %}}'
+        return format.format(highlight(text, lexer, formatter))
 
 rd = HighlightRenderer()
 markdown = Markdown(rd, extensions=('tables', 'fenced-code', 'footnotes',
