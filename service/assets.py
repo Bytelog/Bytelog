@@ -1,11 +1,11 @@
 import os
-import zopfli
 import re
+import zopfli
 
 from csscompressor import compress
-from slimit import minify
 from glob2 import iglob
 from io import BytesIO
+from slimit import minify
 
 # TODO: Turn off gzipping in debug mode
 # TODO: Turn off compression in debug mode
@@ -76,6 +76,7 @@ class AssetManager:
 
     def init_app(self, app):
         self.register(re.compile('.*\.css'), [cssmin], [copy, deflate])
+        self.register(re.compile('.*\.css'), [], [copy, deflate])
         self.register(re.compile('.*\.js'), [jsmin], [copy, deflate])
         self.register(re.compile('.*\.png'), [], [deflate_png])
         self.register(re.compile('.*'), [], [copy, deflate])
