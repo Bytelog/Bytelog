@@ -1,7 +1,5 @@
 {% extends 'layout.jinja' %}
 {% block primary %}
 {% block content %}{% endblock %}
-{% for item in data.values('Tutorials') %}
-    {{ item.category }} | {{ item.title }}
 {% endfor %}
 {% endblock %}
