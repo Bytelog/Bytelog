@@ -12,7 +12,11 @@ documents = Documents('content', 'templates/cache')
 
 
 def create_app():
-    app = Flask(__name__.split('.')[0], static_url_path='/public')
+    app = Flask(
+        __name__.split('.')[0],
+        template_folder='../templates',
+        static_folder='../public'
+    )
 
     env = Development
     if os.environ.get('APPLICATION_ENV', '') == 'Production':
