@@ -5,6 +5,8 @@ Bytelog.org
 Corey Matyas, Dylan Allbee, Vijay Atwater-Van Ness
 
 ## Links
+http://ithare.com/password-hashing-why-and-how/
+
 http://kecebongsoft.com  
 http://steveasleep.com  
 https://zerokspot.com/weblog/2015/12/31/new-string-formatting-in-python/ - fonts?  
