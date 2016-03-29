@@ -72,6 +72,7 @@ svg:not(:root) {
 
 html {
   font-size: 10px;
+  overflow-y: scroll;
 }
 
 body {
