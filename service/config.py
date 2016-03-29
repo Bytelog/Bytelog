@@ -3,6 +3,9 @@ class Base:
     # Environment Settings
     LOGGER_NAME = 'Bytelog'
 
+    # Path Settings
+    STATIC_URL_PATH = ''
+
     # Jinja Settings
     JINJA_AUTO_RELOAD = False
     JINJA_LSTRIP_BLOCKS = True
@@ -30,6 +33,9 @@ class Development(Base):
     # Environment Settings
     DEBUG = True
     TESTING = True
+
+    # Path Settings
+    STATIC_URL_PATH = '/static'
 
     # Jinja Settings
     JINJA_AUTO_RELOAD = True

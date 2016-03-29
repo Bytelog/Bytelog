@@ -15,15 +15,20 @@ def create_app():
     app = Flask(
         __name__.split('.')[0],
         template_folder='../templates',
-        static_folder='../public'
+        static_url_path=None,
+        static_folder=None
     )
 
     env = Development
     if os.environ.get('APPLICATION_ENV', '') == 'Production':
         env = Production
-        app.static_url_path = ''
 
     app.config.from_object(env)
+    app.static_folder = '../public/'
+    app.add_url_rule(app.config['STATIC_URL_PATH'] + '/<path:filename>',
+                     endpoint='static',
+                     view_func=app.send_static_file
+                     )
 
     # Load config items into jinja settings
     for key, val in app.config.items():
