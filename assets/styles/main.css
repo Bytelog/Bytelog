@@ -89,11 +89,13 @@ body {
 .linenos {
   font-family: 'Hack', monospace;
   font-size: 1.4rem;
+  line-height: 1.33;
 }
 
 code, .linenos {
   font-family: 'Fira Mono', monospace;
   font-size: 1.4rem;
+  line-height: 1.33;
 }
 
 a {
@@ -126,6 +128,7 @@ a:hover {
 /* Header */
 header {
   font-size: 2rem;
+  margin: 5rem;
 }
 
 header div {
@@ -168,6 +171,7 @@ nav a:hover {
 
 /* Footer */
 footer {
+  margin: 5rem 0 10rem 0;
   display: flex;
   justify-content: center;
 }
