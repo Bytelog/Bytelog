@@ -3,9 +3,9 @@
     <head>
         <title>{{ meta.title }}</title>
         <meta name='viewport' content='width=device-width, initial-scale=1'>
-        <link rel='author' href='/humans.txt'>
-        <link rel='stylesheet' href='/styles/fira.css'>
-        <link rel='stylesheet' href='/styles/main.css'>
+        <link rel='author' href='{{ url_for('static', filename='styles/humans.txt') }}'>
+        <link rel='stylesheet' href='{{ url_for('static', filename='styles/fira.css') }}'>
+        <link rel='stylesheet' href='{{ url_for('static', filename='styles/main.css') }}'>
     </head>
     <body>
 
@@ -28,13 +28,13 @@
         </main>
 
         <footer>
-            <a href='/humans.txt'>Humans</a> &middot;
+            <a href='{{ url_for('static', filename='styles/humans.txt') }}'>Humans</a> &middot;
             <a href='/privacy'>Privacy</a> &middot;
             <a href='/feed'>Feed</a> &middot;
             <a href='/sitemap'>Sitemap</a> &middot;
             <a href='https://github.com/Bytelog/Bytelog'>Source</a>
         </footer>
 
-        <script src='scripts/main.js'></script>
+        <script src='{{ url_for('static', filename='scripts/main.js') }}'></script>
     </body>
 </html>

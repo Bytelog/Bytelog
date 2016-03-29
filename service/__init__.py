@@ -21,6 +21,7 @@ def create_app():
     env = Development
     if os.environ.get('APPLICATION_ENV', '') == 'Production':
         env = Production
+        app.static_url_path = ''
 
     app.config.from_object(env)
 
