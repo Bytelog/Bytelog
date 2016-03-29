@@ -19,15 +19,9 @@ def create_app():
         static_folder=None
     )
 
-    app.static_folder = '../public/'
     env = Development
-
     if os.environ.get('APPLICATION_ENV', '') == 'Production':
         env = Production
-    else:
-        app.add_url_rule('/static' + '/<path:filename>', endpoint='static',
-                         view_func=app.send_static_file
-                         )
 
     app.config.from_object(env)
 
@@ -39,6 +33,12 @@ def create_app():
     register_controllers(app)
     register_errorhandlers(app)
     register_extensions(app)
+
+    app.static_folder = '../public/'
+    app.add_url_rule(app.config['STATIC_URL_PATH'] + '/<path:filename>',
+                     endpoint='static',
+                     view_func=app.send_static_file
+                     )
 
     return app
 
