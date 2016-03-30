@@ -186,8 +186,11 @@ footer a {
 }
 
 .hero {
+  display: -webkit-box;
   display: flex;
+  -webkit-box-pack: center;
   justify-content: center;
+  -webkit-box-align: center;
   align-items: center;
   font-style: italic;
   height: 10rem;
