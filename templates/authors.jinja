@@ -1,10 +1,7 @@
 {% extends 'layout.jinja' %}
 {% block primary %}
-    <div class='hero'>
-        {% block content %}{% endblock %}
-    </div>
     {% for index, object in data.items() %}
-        {% if index.startswith('articles/') %}
+        {% if index.startswith('authors/') %}
             <div class='article-item'>
                 <h2><a href='/{{ index }}'>{{ object.title }}</a></h2>
                 Updated <time datetime='{{ object.date }}'>{{ humanize.naturaldate(object.date) }}</time>

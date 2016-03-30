@@ -1,7 +1,6 @@
 import humanize
 
 from .. import documents
-from collections import OrderedDict
 from datetime import datetime
 from flask import Blueprint
 from flask import render_template
@@ -38,5 +37,5 @@ def default(page):
     except IndexError:
         meta = {}
 
-    data = {}
+    data = documents.meta
     return render_template(template, meta=meta, data=data)
