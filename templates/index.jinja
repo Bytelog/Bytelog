@@ -6,8 +6,13 @@
     {% for index, object in data.items() %}
         {% if index.startswith('articles/') %}
             <div class='article-item'>
+                <time datetime='{{ object.date }}'>{{ humanize.naturaldate(object.date) }}</time>
+                <div>
                 <h2><a href='/{{ index }}'>{{ object.title }}</a></h2>
-                Updated <time datetime='{{ object.date }}'>{{ humanize.naturaldate(object.date) }}</time>
+                {% for link in object.keywords %}
+                    <a href=''>{{ link }}</a>
+                {% endfor %}
+                </div>
             </div>
         {% endif %}
     {% endfor %}

@@ -159,7 +159,8 @@ nav {
 }
 
 nav a {
-  padding: 1rem 4rem;
+  padding: 1rem 2rem;
+  margin: 0rem 1rem;
 }
 
 nav a:link, a:visited {
@@ -168,7 +169,7 @@ nav a:link, a:visited {
 
 nav a:hover {
   color: #048;
-  box-shadow:0 7px 5px -7px #048;
+  box-shadow:0 7px 3px -7px #048;
   text-decoration: none;
 }
 
@@ -193,7 +194,7 @@ footer a {
   -webkit-box-align: center;
   align-items: center;
   font-style: italic;
-  height: 10rem;
+  height: 15rem;
   text-align: center;
 }
 
@@ -206,12 +207,28 @@ footer a {
 /**********************/
 
 .article-item {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
   margin-bottom: 5rem;
+}
+
+.article-item time {
+  display: block;
+  margin: 0;
+  margin-right: 20px;
+  width: 15rem;
 }
 
 .article-item h2 {
   margin: 0;
-  line-height: 1;
+}
+
+.article-item div > a {
+  display: inline-block;
+  margin-right: 2rem;
+  font-size: 1.4rem;
+  color: blue;
 }
 
 /* Projects */
