@@ -3,17 +3,16 @@
     <div class='hero'>
         {% block content %}{% endblock %}
     </div>
-    {% for index, object in data.items() %}
-        {% if index.startswith('articles/') %}
-            <div class='article-item'>
-                <time datetime='{{ object.date }}'>{{ humanize.naturaldate(object.date) }}</time>
-                <div>
-                <h2><a href='/{{ index }}'>{{ object.title }}</a></h2>
-                {% for link in object.keywords %}
-                    <a href=''>{{ link }}</a>
-                {% endfor %}
-                </div>
-            </div>
-        {% endif %}
-    {% endfor %}
+    <div class='index'>
+        <ul>
+        {% for index, object in data.items() %}
+            {% if index.startswith('articles/') %}
+                <li>
+                    <time datetime='{{ object.date }}'>{{ humanize.naturaldate(object.date) }}</time>
+                    <h2><a href='/{{ index }}'>{{ object.title }}</a></h2>
+                </li>
+            {% endif %}
+        {% endfor %}
+        </ul>
+    </div>
 {% endblock %}
