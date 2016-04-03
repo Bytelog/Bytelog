@@ -20,6 +20,6 @@
 
 /* SITE */
 
-    Address: www.bytelog.org
+    Address: bytelog.org
     Components: Python, Flask
     Server: FreeBSD, Nginx
