@@ -34,18 +34,6 @@
   <g id="l7"> <use xlink:href="#l6" transform="translate(0, -1) rotate(-35) scale(.7)"/>
               <use xlink:href="#l6" transform="translate(0, -1) rotate(+8) scale(.7)"/>
               <use xlink:href="#stem"/></g>
-  <g id="l8"> <use xlink:href="#l7" transform="translate(0, -1) rotate(-35) scale(.7)"/>
-              <use xlink:href="#l7" transform="translate(0, -1) rotate(+8) scale(.7)"/>
-              <use xlink:href="#stem"/></g>
-  <g id="l9"> <use xlink:href="#l8" transform="translate(0, -1) rotate(-35) scale(.7)"/>
-              <use xlink:href="#l8" transform="translate(0, -1) rotate(+8) scale(.7)"/>
-              <use xlink:href="#stem"/></g>
-  <g id="l10"> <use xlink:href="#l9" transform="translate(0, -1) rotate(-35) scale(.7)"/>
-              <use xlink:href="#l9" transform="translate(0, -1) rotate(+8) scale(.7)"/>
-              <use xlink:href="#stem"/></g>
-  <g id="l11"> <use xlink:href="#l10" transform="translate(0, -1) rotate(-35) scale(.7)"/>
-              <use xlink:href="#l10" transform="translate(0, -1) rotate(+8) scale(.7)"/>
-              <use xlink:href="#stem"/></g>
 </defs>
  
 <g transform="translate(200, 320) scale(100)">

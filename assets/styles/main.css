@@ -24,15 +24,6 @@ summary { /* 1 */
 }
 
 /**
- * Remove the outline on focused links when they are also active or hovered
- * in all browsers (opinionated).
- */
-a:active,
-a:hover {
-  outline-width: 0;
-}
-
-/**
  * Prevent `sub` and `sup` elements from affecting the line height in
  * all browsers.
  */
@@ -53,13 +44,6 @@ sup {
 }
 
 /**
- * Remove the border on images inside links in IE 10-.
- */
-img {
-  border-style: none;
-}
-
-/**
  * Hide the overflow in IE.
  */
 svg:not(:root) {
@@ -76,49 +60,38 @@ html {
 }
 
 body {
-  margin: 0 auto;
-  max-width: 80rem;
-  width: 90%;
-  background: #fff;
   color: #444;
   font-family: 'Fira Sans', sans-serif;
-  font-weight: 300;
   font-size: 1.6rem;
+  font-weight: 300;
+  margin: 0 auto;
+  max-width: 80rem;
 }
 
-.linenos {
-  font-family: 'Hack', monospace;
-  font-size: 1.4rem;
-  line-height: 1.33;
+a {
+  color: #044;
+  outline: 0;
+  text-decoration: none;
+}
+
+a:focus, a:hover, a:active {
+  text-decoration: underline;
+}
+
+h1 {
+  font-size: 2rem;
+  font-weight: 500;
+}
+
+h2 {
+  font-size: 1.8rem;
+  font-weight: 500;
 }
 
 code, .linenos {
   font-family: 'Fira Mono', monospace;
   font-size: 1.4rem;
   line-height: 1.33;
-}
-
-a {
-  background-color: transparent;
-}
-
-h1 {
-  font-size: 2.0rem;
-  font-weight: 500;
-}
-
-h2 {
-  font-size: 2.0rem;
-  font-weight: 500;
-}
-
-a:link, a:active, a:visited {
-  text-decoration: none;
-  color: #048;
-}
-
-a:hover {
-  text-decoration: underline;
 }
 
 /**********************/
@@ -131,14 +104,14 @@ header {
 }
 
 header div {
-  width: 100%;
   height: 25rem;
-  display: -webkit-box;
+  width: 100%;
   display: flex;
-  -webkit-box-align: center;
+  display: -webkit-box;
   align-items: center;
-  -webkit-box-pack: center;
+  -webkit-box-align: center;
   justify-content: center;
+  -webkit-box-pack: center;
 }
 
 header div img {
@@ -146,40 +119,35 @@ header div img {
 }
 
 header span {
-  font-style: italic;
   color: #999;
+  font-style: italic;
   padding: 1rem;
 }
 
 nav {
-  display: -webkit-box;
   display: flex;
-  -webkit-box-pack: center;
+  display: -webkit-box;
   justify-content: center;
+  -webkit-box-pack: center;
 }
 
 nav a {
-  padding: 1rem 2rem;
   margin: 0rem 1rem;
-}
-
-nav a:link, a:visited {
-  color: #444;
+  padding: 1rem 2rem;
 }
 
 nav a:hover {
-  color: #048;
-  box-shadow:0 7px 3px -7px #048;
+  box-shadow:0 7px 3px -7px #044;
   text-decoration: none;
 }
 
 /* Footer */
 footer {
   margin: 5rem 0 10rem 0;
-  display: -webkit-box;
   display: flex;
-  -webkit-box-pack: center;
+  display: -webkit-box;
   justify-content: center;
+  -webkit-box-pack: center;
 }
 
 footer a {
@@ -187,19 +155,36 @@ footer a {
 }
 
 .hero {
-  display: -webkit-box;
-  display: flex;
-  -webkit-box-pack: center;
-  justify-content: center;
-  -webkit-box-align: center;
-  align-items: center;
   font-style: italic;
-  height: 15rem;
   text-align: center;
+  height: 15rem;
+  display: flex;
+  display: -webkit-box;
+  align-items: center;
+  -webkit-box-align: center;
+  justify-content: center;
+  -webkit-box-pack: center;
 }
 
-@media all and (max-width: 76rem) {
+@media all and (max-width:600px) {
+  
+  nav {
+    width: 100%;
+    justify-content: space-around;
+  }
 
+  nav a {
+    margin: 0;
+    padding: 0;
+  }
+  
+  footer {
+    justify-content: space-around;
+  }
+  
+  footer a {
+    padding: 0;
+  }
 }
 
 /**********************/
@@ -208,19 +193,25 @@ footer a {
 
 .index {
   display: flex;
+  display: -webkit-box;
   justify-content: center;
+  -webkit-box-pack: center;
 }
 
 .index ul {
-  padding: 0;
   margin: 0;
+  padding: 0;
   display: flex;
+  display: -webkit-box;
   flex-direction: column;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
 }
 
 .index li {
-  display: flex;
   margin: 0 0 1rem 0;
+  display: flex;
+  display: -webkit-box;
 }
 
 .index time {
@@ -228,25 +219,25 @@ footer a {
 }
 
 .index h2 {
-  margin: 0;
-  line-height: 1;
   font-size: 1.8rem;
+  line-height: 1;
+  margin: 0;
 }
 
 /* Projects */
 ul.projects {
   margin: 0;
   padding: 0;
-  display: -webkit-box;
   display: flex;
+  display: -webkit-box;
   flex-flow: row wrap;
 }
 
 .projects li {
-  margin: 1rem;
-  -webkit-box-flex: 1;
-  flex-grow: 1; 
   list-style-type: none;
+  margin: 1rem;
+  flex-grow: 1;
+  -webkit-box-flex: 1;
 }
 
 
