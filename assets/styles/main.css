@@ -69,7 +69,7 @@ body {
 }
 
 a {
-  color: #044;
+  color: #057;
   outline: 0;
   text-decoration: none;
 }
@@ -107,11 +107,8 @@ header div {
   height: 25rem;
   width: 100%;
   display: flex;
-  display: -webkit-box;
   align-items: center;
-  -webkit-box-align: center;
   justify-content: center;
-  -webkit-box-pack: center;
 }
 
 header div img {
@@ -126,9 +123,7 @@ header span {
 
 nav {
   display: flex;
-  display: -webkit-box;
   justify-content: center;
-  -webkit-box-pack: center;
 }
 
 nav a {
@@ -137,7 +132,7 @@ nav a {
 }
 
 nav a:hover {
-  box-shadow:0 7px 3px -7px #044;
+  box-shadow:0 7px 3px -7px #057;
   text-decoration: none;
 }
 
@@ -145,9 +140,7 @@ nav a:hover {
 footer {
   margin: 5rem 0 10rem 0;
   display: flex;
-  display: -webkit-box;
   justify-content: center;
-  -webkit-box-pack: center;
 }
 
 footer a {
@@ -159,11 +152,8 @@ footer a {
   text-align: center;
   height: 15rem;
   display: flex;
-  display: -webkit-box;
   align-items: center;
-  -webkit-box-align: center;
   justify-content: center;
-  -webkit-box-pack: center;
 }
 
 @media all and (max-width:600px) {
@@ -171,7 +161,6 @@ footer a {
   nav {
     width: 100%;
     justify-content: space-around;
-    -webkit-box-pack: space-around;
   }
 
   nav a {
@@ -181,7 +170,6 @@ footer a {
   
   footer {
     justify-content: space-around;
-    -webkit-box-pack: space-around;
   }
   
   footer a {
