@@ -171,6 +171,7 @@ footer a {
   nav {
     width: 100%;
     justify-content: space-around;
+    -webkit-box-pack: center;
   }
 
   nav a {
@@ -180,6 +181,7 @@ footer a {
   
   footer {
     justify-content: space-around;
+    -webkit-box-pack: center;
   }
   
   footer a {
