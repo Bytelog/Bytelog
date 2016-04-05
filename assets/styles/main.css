@@ -74,6 +74,10 @@ a {
   text-decoration: none;
 }
 
+a:visited {
+  color: #507;
+}
+
 a:focus, a:hover, a:active {
   text-decoration: underline;
 }
@@ -86,6 +90,10 @@ h1 {
 h2 {
   font-size: 1.8rem;
   font-weight: 500;
+}
+
+h3 {
+  font-size: 1.6rem;
 }
 
 code, .linenos {
@@ -131,9 +139,13 @@ nav a {
   padding: 1rem 2rem;
 }
 
-nav a:hover {
+nav a:focus, nav a:hover, nav a:active {
   box-shadow:0 7px 3px -7px #057;
   text-decoration: none;
+}
+
+main {
+  padding: 2rem;
 }
 
 /* Footer */

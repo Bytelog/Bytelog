@@ -4,6 +4,7 @@ from .. import documents
 from datetime import datetime
 from flask import Blueprint
 from flask import render_template
+from flask import request
 from htmlmin.main import Minifier
 
 blueprint = Blueprint('content', __name__)
@@ -38,4 +39,4 @@ def default(page):
         meta = {}
 
     data = documents.meta
-    return render_template(template, meta=meta, data=data)
+    return render_template(template, meta=meta, data=data, request=request)
