@@ -63,7 +63,7 @@ body {
   color: #444;
   font-family: 'Fira Sans', sans-serif;
   font-size: 1.6rem;
-  font-weight: 300;
+  font-style: normal;
   margin: 0 auto;
   max-width: 80rem;
 }
@@ -84,12 +84,12 @@ a:focus, a:hover, a:active {
 
 h1 {
   font-size: 2rem;
-  font-weight: 500;
+  font-style: bold;
 }
 
 h2 {
   font-size: 1.8rem;
-  font-weight: 500;
+  font-style: bold;
 }
 
 h3 {
