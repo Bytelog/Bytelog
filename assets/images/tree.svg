@@ -4,13 +4,12 @@
 <svg xmlns="http://www.w3.org/2000/svg" 
      xmlns:xlink="http://www.w3.org/1999/xlink"
      width="400" height="320">
-  <style type="text/css"><![CDATA[
-    line { stroke: black; stroke-width: .05; }
-    circle { fill: black; }
-  ]]></style>
+  <style type="text/css">
+    line { stroke: #000101; stroke-width: .05; }
+  </style>
  
 <defs>
-  <g id="stem"> <line x1="0" y1="0" x2="0" y2="-1.045"/> </g>
+  <g id="stem"> <line x1="0" y1="0" x2="0" y2="-1.05"/> </g>
  
   <g id="l0"><use xlink:href="#stem"/></g>
   <g id="l1"> <use xlink:href="#l0" transform="translate(0, -1) rotate(-35) scale(.7)"/>
