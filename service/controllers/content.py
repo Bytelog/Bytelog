@@ -24,7 +24,7 @@ def inject_imports():
 
 @blueprint.after_request
 def response_minify(response):
-    if(response.mimetype == 'text/html'):
+    if response.mimetype == 'text/html':
         response.set_data(minifier.minify(response.get_data(as_text=True)))
     return response
 
