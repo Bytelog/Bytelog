@@ -1,3 +1,19 @@
+/**************/
+/* Guidelines */
+/**************/
+
+/**
+ * Base Color: #057;
+ * http://www.colorhexa.com/005577
+ *
+ * Analogous
+ * #00775d; #057; #001a77;
+ *
+ * Color Shades
+ * #000101; #002b3c; #057; #007fb2; #00a9ed
+ */
+
+
 /*********************/
 /* CSS Normalization */
 /*********************/
@@ -63,7 +79,7 @@ body {
   color: #444;
   font-family: 'Fira Sans', sans-serif;
   font-size: 1.6rem;
-  font-style: normal;
+  font-weight: 300;
   margin: 0 auto;
   max-width: 80rem;
 }
@@ -74,22 +90,19 @@ a {
   text-decoration: none;
 }
 
-a:visited {
-  color: #507;
-}
-
 a:focus, a:hover, a:active {
+  color: #00775d;
   text-decoration: underline;
 }
 
 h1 {
   font-size: 2rem;
-  font-style: bold;
+  font-weight: 500;
 }
 
 h2 {
   font-size: 1.8rem;
-  font-style: bold;
+  font-weight: 500;
 }
 
 h3 {
@@ -140,7 +153,7 @@ nav a {
 }
 
 nav a:focus, nav a:hover, nav a:active {
-  box-shadow:0 7px 3px -7px #057;
+  box-shadow:0 7px 3px -7px #007fb2;;
   text-decoration: none;
 }
 
@@ -197,6 +210,9 @@ img {
 /**********************/
 /* Specific Pages */
 /**********************/
+
+
+
 
 .index {
   display: flex;
