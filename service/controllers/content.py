@@ -5,6 +5,7 @@ from datetime import datetime
 from flask import Blueprint
 from flask import render_template
 from flask import request
+from flask import Response
 from htmlmin.main import Minifier
 
 blueprint = Blueprint('content', __name__)
@@ -23,7 +24,8 @@ def inject_imports():
 
 @blueprint.after_request
 def response_minify(response):
-    response.set_data(minifier.minify(response.get_data(as_text=True)))
+    if(response.mimetype == 'text/html'):
+        response.set_data(minifier.minify(response.get_data(as_text=True)))
     return response
 
 
@@ -40,3 +42,9 @@ def default(page):
 
     data = documents.meta
     return render_template(template, meta=meta, data=data, request=request)
+
+
+@blueprint.route('/feed')
+def feed():
+    data = documents.meta
+    return Response(render_template('feed.jinja',data=data, request=request), mimetype='text/rss+xml')

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<rss version="2.0">
+	<channel>
+		<title>Bytelog</title>
+		<link>https://bytelog.org/</link>
+		<ttl>1440</ttl>
+{% for index, object in data.items() %}
+    {% if index.startswith('articles/') %}
+		<item>
+			<title>{{ object.title }}</title>
+			<link>https://bytelog.org/{{ index }}</link>
+			<author>{{ object.author }}</author>
+			<pubDate>{{ object.date }}</pubDate>
+		</item>
+    {% endif %}
+{% endfor %}
+	</channel>
+</rss>
