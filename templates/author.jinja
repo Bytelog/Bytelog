@@ -1,0 +1,17 @@
+{% extends 'layout.jinja' %}
+{% block primary %}
+<div class='author'>
+	{% block content %}{% endblock %}
+	{# <h2>Authored Articles</h2>
+    <ul>
+	{% for index, object in data.items() %}
+        {% if index.startswith('articles/') and object.author == meta.author %}
+		<li>
+                <time datetime='{{ object.date }}'>{{ humanize.naturaldate(object.date) }}</time>
+                <h2><a href='/{{ index }}'>{{ object.title }}</a></h2>
+        </li>
+        {% endif %}
+    {% endfor %}
+	</ul> #}
+</div>
+{% endblock %}

@@ -263,6 +263,23 @@ ul.projects {
   -webkit-box-flex: 1;
 }
 
+.article  p:first-of-type, .article h1:first-of-type {
+  display: flex;
+  display: -webkit-box;
+  justify-content: center;
+  -webkit-box-pack: center;
+}
+
+.author {
+
+}
+
+
+.author h2 {
+  font-size: 1.8rem;
+  line-height: 1;
+  margin: 0;
+}
 
 /***********************************/
 /* Styling for Syntax Highlighting */

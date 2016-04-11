@@ -1,4 +1,8 @@
 {% extends 'layout.jinja' %}
 {% block primary %}
-{% block content %}{% endblock %}
+<div class='article'>
+	<h1>{{ meta.title }}</h1>
+	<p>By {{ meta.author }} on <time datetime='{{ meta.date }}'>{{ humanize.naturaldate(meta.date) }}</time></p>
+	{% block content %}{% endblock %}
+</div>
 {% endblock %}
