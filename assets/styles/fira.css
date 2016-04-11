@@ -16,9 +16,9 @@
 
 @font-face{
     font-family: 'Fira Sans';
-    src: local('Fira Sans Medium'),
-         url('/fonts/FiraSans-Medium.woff') format('woff');
-    font-weight: 500;
+    src: local('Fira Sans Regular'),
+         url('/fonts/FiraSans-Regular.woff') format('woff');
+    font-weight: 400;
     font-style: normal;
 }
 
