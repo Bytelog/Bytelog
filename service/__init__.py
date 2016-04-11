@@ -1,4 +1,5 @@
 import os
+import signal
 
 from .assets import AssetManager
 from .config import Development
@@ -10,6 +11,10 @@ from flask import render_template
 am = AssetManager('assets', 'public')
 documents = Documents('content', 'templates/cache')
 
+def sig_handler(sig, frame):
+    if sig == signal.SIGUSR1:
+        # Rebuild Assets
+        am._process()
 
 def create_app():
     app = Flask(
@@ -39,6 +44,10 @@ def create_app():
                      endpoint='static',
                      view_func=app.send_static_file
                      )
+
+    signal.signal(signal.SIGUSR1, sig_handler)
+    signal.signal(signal.SIGUSR2, sig_handler)
+
 
     return app
 
