@@ -15,6 +15,10 @@ def sig_handler(sig, frame):
     if sig == signal.SIGUSR1:
         # Rebuild Assets
         am._process()
+    if sig == signal.SIGUSR2:
+        # Reload Content
+        documents.remove()
+        documents.update()
 
 def create_app():
     app = Flask(
