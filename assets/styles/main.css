@@ -122,15 +122,19 @@ code, .linenos {
   line-height: 1.33;
 }
 
+sup a::before {
+  content: "[";
+}
+
+sup a::after {
+  content: "]";
+}
+
 /**********************/
 /* Block Styling */
 /**********************/
 
 /* Header */
-header {
-  font-size: 2rem;
-}
-
 header div {
   height: 25rem;
   width: 100%;
@@ -150,6 +154,7 @@ header span {
 }
 
 nav {
+  font-size: 2rem;
   display: flex;
   justify-content: center;
 }
@@ -177,6 +182,11 @@ footer {
 
 footer a {
   padding: 0 2rem;
+}
+
+/* Fix for images  */
+img {
+  max-width: 100%;
 }
 
 .hero {
@@ -207,11 +217,6 @@ footer a {
   footer a {
     padding: 0;
   }
-}
-
-/* Fix for images  */
-img {
-  max-width: 100%;
 }
 
 /**********************/
@@ -270,7 +275,7 @@ ul.projects {
   -webkit-box-flex: 1;
 }
 
-.article  p:first-of-type, .article h1:first-of-type {
+article  p:first-of-type, article h1:first-of-type {
   display: flex;
   display: -webkit-box;
   justify-content: center;
