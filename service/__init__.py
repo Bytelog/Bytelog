@@ -11,6 +11,8 @@ from flask import render_template
 am = AssetManager('assets', 'public')
 documents = Documents('content', 'templates/cache')
 
+
+# TODO: Move signal handlers into respective modules
 def sig_handler(sig, frame):
     if sig == signal.SIGUSR1:
         # Rebuild Assets
@@ -19,6 +21,7 @@ def sig_handler(sig, frame):
         # Reload Content
         documents.remove()
         documents.update()
+
 
 def create_app():
     app = Flask(
@@ -51,7 +54,6 @@ def create_app():
 
     signal.signal(signal.SIGUSR1, sig_handler)
     signal.signal(signal.SIGUSR2, sig_handler)
-
 
     return app
 
