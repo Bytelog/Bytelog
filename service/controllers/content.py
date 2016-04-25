@@ -5,16 +5,15 @@ from datetime import datetime
 from flask import Blueprint
 from flask import render_template
 from flask import request
-from flask import Response
 from htmlmin.main import Minifier
 
 blueprint = Blueprint('content', __name__)
 
 minifier = Minifier(
-        remove_comments=True,
-        remove_empty_space=True,
-        reduce_boolean_attributes=True,
-    )
+    remove_comments=True,
+    remove_empty_space=True,
+    reduce_boolean_attributes=True,
+)
 
 
 @blueprint.context_processor
@@ -40,11 +39,11 @@ def default(page):
     except IndexError:
         meta = {}
 
-    data = documents.meta
+    items = documents.meta.items()
+    data = sorted(items, key=lambda item: item[1]['date'], reverse=True)
     return render_template(template, meta=meta, data=data, request=request)
 
 
 @blueprint.route('/feed')
 def feed():
-    data = documents.meta
-    return Response(render_template('feed.jinja',data=data, request=request), mimetype='text/rss+xml')
+    return render_template('feed.jinja', data=documents.meta), 'text/rss+xml'

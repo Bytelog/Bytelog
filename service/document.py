@@ -85,8 +85,8 @@ class Documents():
 
         try:
             clean('title', titlecase, required)
-            clean('author', titlecase, lambda: None)
-            clean('date', dateutil.parser.parse, lambda: None)
+            clean('author', titlecase, lambda: '')
+            clean('date', dateutil.parser.parse, lambda: datetime.min)
             clean('keywords', lambda x: x.lower().split(), lambda: [])
             clean('template', lambda x: x, lambda: 'default')
             clean('prev', lambda x: x, lambda: None)

@@ -251,11 +251,16 @@ img {
 
 .index time {
   margin: 0 2rem 0 0;
+  display: block;
+  width: 6em;
+  text-align: right;
+  line-height: 100%;
+  font-size: 1.8rem;
 }
 
 .index h2 {
   font-size: 1.8rem;
-  line-height: 1;
+  line-height: 100%;
   margin: 0;
 }
 

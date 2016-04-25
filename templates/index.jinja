@@ -5,7 +5,7 @@
     </div>
     <div class='index'>
         <ul>
-        {% for index, object in data.items() %}
+        {% for index, object in data %}
             {% if index.startswith('articles/') %}
                 <li>
                     <time datetime='{{ object.date }}'>{{ humanize.naturaldate(object.date) }}</time>
