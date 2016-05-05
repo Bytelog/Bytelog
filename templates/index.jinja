@@ -8,8 +8,8 @@
         {% for index, object in data %}
             {% if index.startswith('articles/') %}
                 <li>
-                    <time datetime='{{ object.date }}'>{{ humanize.naturaldate(object.date) }}</time>
                     <h2><a href='/{{ index }}'>{{ object.title }}</a></h2>
+                    <span class='author'>{{ object.author }}</span>
                 </li>
             {% endif %}
         {% endfor %}
