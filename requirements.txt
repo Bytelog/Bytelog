@@ -1,6 +1,6 @@
 cffi==1.5.2
 csscompressor==0.9.4
-Flask==0.10.1
+Flask==1.0
 Flask-Script==2.0.5
 glob2==0.4.1
 gunicorn==19.6.0
